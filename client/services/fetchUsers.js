@@ -1,7 +1,7 @@
 async function fetchUsers() {
     // Fetch all users
     try {
-        const response = await fetch("http://localhost:5000/users");
+        const response = await fetch("http://localhost:5001/users");
 
         if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -18,7 +18,7 @@ async function fetchUsers() {
 async function addUser(user) {
     // Example of the addUser function
     try {
-        const response = await fetch("http://localhost:5000/users/add", {
+        const response = await fetch("http://localhost:5001/users/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -45,7 +45,7 @@ async function addUser(user) {
 async function login(credentials) {
     // Login function
     try {
-        const response = await fetch("http://localhost:5000/users/login", {
+        const response = await fetch("http://localhost:5001/users/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -73,7 +73,7 @@ async function login(credentials) {
 async function updateUser(name, updatedUser) {
     // Update a user
     try {
-        const response = await fetch(`http://localhost:5000/users/update/${name}`, {
+        const response = await fetch(`http://localhost:5001/users/update/${name}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -96,7 +96,7 @@ async function updateUser(name, updatedUser) {
 async function deleteUser(name) {
     // Delete a user
     try {
-        const response = await fetch(`http://localhost:5000/users/delete/${name}`, {
+        const response = await fetch(`http://localhost:5001/users/delete/${name}`, {
             method: "DELETE",
         });
 
