@@ -1,7 +1,7 @@
 // Fetch all sessions
 async function fetchSessions() {
     try {
-        const response = await fetch('http://localhost:5001/sessions');
+        const response = await fetch('/sessions');
 
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -18,7 +18,7 @@ async function fetchSessions() {
 // Add a new session
 async function addSession(session) {
     try {
-        const response = await fetch('http://localhost:5001/sessions/add', {
+        const response = await fetch('/sessions/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ async function addSession(session) {
 // Update a session
 async function updateSession(id, updatedSession) {
     try {
-        const response = await fetch(`http://localhost:5001/sessions/${id}`, {
+        const response = await fetch(`/sessions/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ async function updateSession(id, updatedSession) {
 // Delete a session
 async function deleteSession(id) {
     try {
-        const response = await fetch(`http://localhost:5001/sessions/${id}`, {
+        const response = await fetch(`/sessions/${id}`, {
             method: 'DELETE',
         });
 
