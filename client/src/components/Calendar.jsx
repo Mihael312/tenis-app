@@ -22,7 +22,9 @@ export default function Calendar({ sessions, setSessions, isLoggedIn, user }) {
   const timeScale = { enable: true, interval: 120, slotCount: 2 };
   const data = sessions.map((session) => ({
     ...session,
-    Subject: `${session.Username} ${session.UserLastName}`,
+    StartTime: (session.startTime),
+    EndTime: (session.endTime),
+    Subject: `${session.username} ${session.userLastName}`,
   }));
 
   const dodajTermin = () => {
@@ -53,17 +55,16 @@ export default function Calendar({ sessions, setSessions, isLoggedIn, user }) {
   };
 
   const handleSubmit = async () => {
-    const endTime = `${date}-${calculateEndTime()}`;
+    const endTime = `${date} ${calculateEndTime()}:00Z`;
     const username = user[0];
     const userLastName = user[1];
-    const StartTime = `${date}-${time}`;
+    const startTime = `${date} ${time}:00Z`;
     const newSession = {
       username,
       userLastName,
-      StartTime,
+      startTime,
       endTime,
     };
-  
     if (date && time && duration) {
       try {
         await addSession(newSession); // Add session to the backend
@@ -183,9 +184,16 @@ export default function Calendar({ sessions, setSessions, isLoggedIn, user }) {
 
       <ScheduleComponent
         width="80%"
-        // height="760px"
         height="100%"
-        eventSettings={{ dataSource: data, allowAdding: false }}
+        eventSettings={{
+          dataSource: data,
+          allowAdding: false,
+          allowEditing: false,
+          allowDeleting: false, 
+        }}
+        eventClick={(args) => {
+          args.cancel = true; // Cancel the default click behavior
+        }}
         selectedDate={new Date()}
         startHour="06:00"
         endHour="24:00"

@@ -46,7 +46,6 @@ export default function Registracija({ setIsLoggedIn }) {
     <div className="flex flex-col items-center bg-blue-200 w-[60%] h-[50vh] justify-center rounded-md p-4">
       <h1 className="text-2xl mb-4">Registracija</h1>
 
-      {/* Username Input */}
       <input
         type="text"
         value={username}
